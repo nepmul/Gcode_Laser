@@ -1,5 +1,7 @@
-path_luban=""
-path_ender=""
+from tuning import tune
+
+path_luban="luban.nc"
+path_ender="ender.gcode"
 
 dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesammter block
     "G1": None,
@@ -24,7 +26,7 @@ startcode=[
     "G92 E0 ;reset Extruder",
     "M84 E ;Disable stepper Extruder",
     "G28 ;homing",
-    "",
+    "G1 Z60.00",
     "",
     "",
     ""
@@ -40,8 +42,6 @@ with open(path_luban, "r") as f:
     file = f.read()
 
 file_luban=file.split("\n")
-
-print(file_luban)
 
 file_ender=startcode
 
@@ -65,16 +65,23 @@ for block in file_luban:
                 parameters=block.split(" ", 1)[1]#alles außer dem code
             except IndexError: #keine parameter angegeben
                 parameters=""
-            new_block.replace("%", " "+parameters)
-        file_ender.append(dic_code[code])
+            new_block=new_block.replace("%", " "+parameters)
+        file_ender.append(new_block)
 
         print(f"old:{block} new:{new_block}")
 
-file_ender.append(endcode)
+for block in endcode:
+    file_ender.append(block)
+
+
+file_ender=tune(file_ender)
+print("\n"*7)
 
 final_file=""
 for block in file_ender:
+    print(block)
     final_file+=block
+    final_file+="\n"
 
 with open(path_ender, "w") as f:
     f.write(final_file)
@@ -85,5 +92,4 @@ with open(path_ender, "w") as f:
 
 
 
-#todo:  "M107 ;laser aus"  ausprobieren
 
