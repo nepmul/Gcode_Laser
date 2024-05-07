@@ -1,7 +1,7 @@
-laser an aus verzögerung; warten im g code einbauen
+laser aus zu langsam: z hoop / rechnen, dass laser früher aus gemacht wird
 
 offset x 50mm: 3d druck begrenzer zum homen(gefahr wegen max x, bessere nutzung des druckfelds(125*125) / software
-Netzteil spannuung: Akku / am drucker netzteil? / andere netzteile ausprobieren(darf kein spannungsunterschied zwischen massen sein!)
 offset z 60mm: 3d druck begrenzer zum homen / software
-geschwindigkeit leerfahrt: jedes mal im gcode vorher angeben?
 druckfelt bei luban vergrößern/ anderer slicer
+
+Netzteil spannuung: Akku / am drucker netzteil? / andere netzteile ausprobieren(darf kein spannungsunterschied zwischen massen sein!)
