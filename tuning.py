@@ -73,4 +73,23 @@ def umrandung_abfahren(gcode, runden_abfahren):
 
 
 def offset(gcode, offset_x, offset_y):
-    return gcode
+    new_gcode=[]
+    for block in gcode:
+        print(block)
+        args=block.split(" ")
+        if not args == [""]:
+
+
+            for arg in args:
+                if arg[0] == "X":
+                    new_arg = "X"+str(round(float(arg[1:]) + offset_x, 2))#offset wird auf gegebenen wert drauf gerechnet
+                    block=block.replace(arg, new_arg)
+                elif arg[0] == "Y":
+                    new_arg = "Y"+str(round(float(arg[1:]) + offset_y, 2))
+                    block=block.replace(arg, new_arg)
+
+
+        print(block)
+        new_gcode.append(block)
+
+    return new_gcode

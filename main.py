@@ -1,7 +1,7 @@
 from tuning import tune, umrandung_abfahren, offset
 
 path_luban="Luban/Strich.nc"
-path_ender="/media/br/AC625/Strich.gcode"
+path_ender="Ender_Code.gcode"#"/media/br/AC625/Strich.gcode"
 
 object_height=20
 laser_height=5
@@ -12,8 +12,8 @@ travel_speed=5000
 
 umrandung_runden=7
 
-offset_x=1000
-offset_y=1000
+offset_x=30
+offset_y=30
 
 laser_height+=object_height
 dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesammter block
