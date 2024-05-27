@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="Neues Programm für lightburn gcode,&#10;Grayscale nun möglich: laser power wird in laser geschwindigkeit gewandelt">
-      <change afterPath="$PROJECT_DIR$/main_Lightburn.py" afterDir="false" />
+    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="unbenutzen code gestrichen, ToDo überarbeitet">
+      <change afterPath="$PROJECT_DIR$/create_gray-speed_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ToDo" beforeDir="false" afterPath="$PROJECT_DIR$/ToDo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +38,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.create_gray-speed_test.executor": "Run",
     "Python.main.executor": "Run",
     "Python.main_Lightburn.executor": "Run",
+    "Python.tests.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master"
@@ -140,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716825640625</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="unbenutzen code gestrichen, ToDo überarbeitet">
+      <option name="closed" value="true" />
+      <created>1716826018652</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716826018652</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -149,6 +160,7 @@
     <MESSAGE value="offset eingebaut" />
     <MESSAGE value="copied" />
     <MESSAGE value="Neues Programm für lightburn gcode,&#10;Grayscale nun möglich: laser power wird in laser geschwindigkeit gewandelt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Neues Programm für lightburn gcode,&#10;Grayscale nun möglich: laser power wird in laser geschwindigkeit gewandelt" />
+    <MESSAGE value="unbenutzen code gestrichen, ToDo überarbeitet" />
+    <option name="LAST_COMMIT_MESSAGE" value="unbenutzen code gestrichen, ToDo überarbeitet" />
   </component>
 </project>
