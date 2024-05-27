@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="unbenutzen code gestrichen, ToDo überarbeitet">
-      <change afterPath="$PROJECT_DIR$/create_gray-speed_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDo" beforeDir="false" afterPath="$PROJECT_DIR$/ToDo" afterDir="false" />
+    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="pogramm um geschwindigkeit für graustufen zu kalibrieren">
+      <change beforePath="$PROJECT_DIR$/create_gray-speed_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_gray-speed_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716826018652</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="pogramm um geschwindigkeit für graustufen zu kalibrieren">
+      <option name="closed" value="true" />
+      <created>1716836986172</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716836986172</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -161,6 +167,7 @@
     <MESSAGE value="copied" />
     <MESSAGE value="Neues Programm für lightburn gcode,&#10;Grayscale nun möglich: laser power wird in laser geschwindigkeit gewandelt" />
     <MESSAGE value="unbenutzen code gestrichen, ToDo überarbeitet" />
-    <option name="LAST_COMMIT_MESSAGE" value="unbenutzen code gestrichen, ToDo überarbeitet" />
+    <MESSAGE value="pogramm um geschwindigkeit für graustufen zu kalibrieren" />
+    <option name="LAST_COMMIT_MESSAGE" value="pogramm um geschwindigkeit für graustufen zu kalibrieren" />
   </component>
 </project>
