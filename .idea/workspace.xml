@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="offset eingebaut">
+    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="Neues Programm für lightburn gcode,&#10;Grayscale nun möglich: laser power wird in laser geschwindigkeit gewandelt">
       <change afterPath="$PROJECT_DIR$/main_Lightburn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,13 +124,31 @@
       <option name="project" value="LOCAL" />
       <updated>1715629500688</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="copied">
+      <option name="closed" value="true" />
+      <created>1716825503816</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716825503816</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Neues Programm für lightburn gcode,&#10;Grayscale nun möglich: laser power wird in laser geschwindigkeit gewandelt">
+      <option name="closed" value="true" />
+      <created>1716825640625</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716825640625</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="weiterarbeit" />
     <MESSAGE value="offset eingebaut" />
-    <option name="LAST_COMMIT_MESSAGE" value="offset eingebaut" />
+    <MESSAGE value="copied" />
+    <MESSAGE value="Neues Programm für lightburn gcode,&#10;Grayscale nun möglich: laser power wird in laser geschwindigkeit gewandelt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Neues Programm für lightburn gcode,&#10;Grayscale nun möglich: laser power wird in laser geschwindigkeit gewandelt" />
   </component>
 </project>

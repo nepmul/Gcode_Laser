@@ -38,7 +38,6 @@ def tune(original_gcode):
             new_blocks.append(f"G1 F{speed_travel}")
             laser_off_flag=True
 
-
         elif block[:4]=="M106":#Laser an
             if laser_off_flag:
                 new_blocks.append("M106 S255")
@@ -48,13 +47,9 @@ def tune(original_gcode):
             speed=power2speed(speed_max, speed_min, float(block[6:]))
             new_blocks.append(f"G1 F{speed}")
 
-
         else:
             new_blocks.append(block)
-        """
-        elif block=="G90":
-            new_blocks.append("G1 X60 Y50")
-        """
+
         for block in new_blocks:
             tuned_gcode.append(block)
     return tuned_gcode
@@ -81,15 +76,7 @@ for block in file_original:
         file_ender.append(block)
 
     else:
-        new_block=dic_code[code]
-        if "%" in new_block:
-            try:
-                parameters=block.split(" ", 1)[1]#alles außer dem code
-                new_block=new_block.replace("%", " "+parameters)
-            except IndexError: #keine parameter angegeben
-                new_block=new_block.replace("%", "")
-
-        file_ender.append(new_block)
+        file_ender.append(dic_code[code])
 
 full_file=tune(file_ender)
 
@@ -101,4 +88,3 @@ for block in full_file:
 
 with open(path_ender, "w") as f:
     f.write(final_file)
-    print(final_file)
