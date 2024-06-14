@@ -1,11 +1,14 @@
-path_original="Lightburn/Leo_muster_ausschnitt_grayscale.nc"
-path_ender="/media/br/AC625/grayscale.gcode"
+from tuning_Lightburn import tune, umrandung_abfahren
+
+
+path_original="Lightburn/klilie.nc"
+path_ender="/media/br/AC625/klilie_kronkorken.gcode"
 
 umrandung_runden=3
 
-speed_travel=300
-speed_max=200
-speed_min=100
+speed_travel=1500
+speed_max=1200
+speed_min=5#80
 
 
 dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesammter block
@@ -22,38 +25,6 @@ dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesammter block
 }
 
 
-def power2speed(speed0, speed100, power):
-    dif = speed100-speed0
-    return round(power/255*dif+speed0, 2)
-
-def tune(original_gcode):
-    tuned_gcode=[]
-    laser_off_flag=True
-    for block in original_gcode:
-        new_blocks=[]
-
-        if block=="M106 S0 ":#Laser aus
-            new_blocks.append(block)
-            new_blocks.append("G4 P200")
-            new_blocks.append(f"G1 F{speed_travel}")
-            laser_off_flag=True
-
-        elif block[:4]=="M106":#Laser an
-            if laser_off_flag:
-                new_blocks.append("M106 S255")
-                new_blocks.append("G4 P50") #1s = 1000
-                laser_off_flag=False
-
-            speed=power2speed(speed_max, speed_min, float(block[6:]))
-            new_blocks.append(f"G1 F{speed}")
-
-        else:
-            new_blocks.append(block)
-
-        for block in new_blocks:
-            tuned_gcode.append(block)
-    return tuned_gcode
-
 with open(path_original, "r") as f:
     file = f.read()
 
@@ -61,6 +32,10 @@ file_original=file.split("\n")
 
 file_ender=[]
 for block in file_original:
+
+    if "F" in block: #alle geschwindigkeiten von Ligtburn raus filtern
+        block=block.split("F")[0]
+
     code = block.split(" ")[0]
     if block=="":
         pass
@@ -78,13 +53,20 @@ for block in file_original:
     else:
         file_ender.append(dic_code[code])
 
-full_file=tune(file_ender)
+full_file=tune(file_ender, speed_travel, speed_max, speed_min)
 
 final_file=""
 for block in full_file:
     print(block)
     final_file+=block
     final_file+="\n"
+
+
+#umrandung_abfahren(full_file, umrandung_runden)
+
+
+
+
 
 with open(path_ender, "w") as f:
     f.write(final_file)
