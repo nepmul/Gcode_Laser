@@ -1,14 +1,14 @@
 from tuning_Lightburn import tune, umrandung_abfahren
 
 
-path_original="Lightburn/klilie.nc"
-path_ender="/media/br/AC625/klilie_kronkorken.gcode"
+path_original="Lightburn/stammeslogo_minipoeg.nc"
+path_ender="/media/br/AC625/stammeslogo_22mm.gcode"
 
 umrandung_runden=3
 
 speed_travel=1500
 speed_max=1200
-speed_min=5#80
+speed_min=60 #kronkorken:5
 
 
 dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesammter block

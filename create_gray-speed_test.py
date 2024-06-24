@@ -1,10 +1,10 @@
-sections=10#stk
-section_width=7#mm
-height=10#mm
+sections=4#stk
+section_width=5#mm
+height=0.8#mm
 spacing=0.1#mm
 
-min_speed=200
-max_speed=800
+min_speed=260
+max_speed=330
 
 travel_speed=3000
 
@@ -58,7 +58,10 @@ line.append(f"G1 X{overdrawing}")
 line.append(f"G1 X-{full_widt+overdrawing} Y{spacing} F{travel_speed}")
 
 gcode=startcode
+line_counter=0
+gcode.append("G1 Y1")
 while laser_height+spacing <= height:
+    line_counter+=1
     laser_height+=spacing
     gcode.extend(line)
 
@@ -81,8 +84,9 @@ for i in range(sections):
 result+="\n"*3
 file+=result
 print(result)
+print(f"{line_counter} lines")
 
 
-with open("/media/br/AC625/gray-speed_calibration.gcode", "w") as f:
+with open("/media/br/AC625/feuerzeug_speed.gcode", "w") as f:
     f.write(file)
 

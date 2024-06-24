@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="programm um geschwindigkeit für graustufen zu kalibrieren">
-      <change beforePath="$PROJECT_DIR$/.idea/Gcode_Laser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Gcode_Laser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_gray-speed_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_gray-speed_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_Lightburn.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_Lightburn.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,6 +42,7 @@
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.main_Lightburn.executor&quot;: &quot;Run&quot;,
     &quot;Python.tests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tuning_Lightburn.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;
@@ -168,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716839380296</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="programm um geschwindigkeit für graustufen zu kalibrieren">
+      <option name="closed" value="true" />
+      <created>1718370162963</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1718370162963</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
