@@ -25,46 +25,19 @@ def tune(original_gcode, laser_height, z_hoop, laser_speed, travel_speed):
     return tuned_gcode
 
 
-def umrandung_abfahren(gcode, runden_abfahren):
-    x_max=0
-    x_min=1000
-    y_max=0
-    y_min=1000
-    for block in gcode:
-        parts_block=block.split(" ")
-        if parts_block[0] == "G1" or parts_block[0] == "G0":
-            for part in parts_block:
-                value=float(part[1:])
+def umrandung_abfahren(maße, runden_abfahren_stk, pause):
 
-                if part[0]=="X":
-                    if value > x_max:
-                        x_max=value
-                    if value < x_min:
-                        x_min=value
-
-                if part[0]=="Y":
-                    if value > y_max:
-                        y_max=value
-                    if value < y_min:
-                        y_min=value
-
-    #print(x_max)
-    #print(x_min)
-    #print(y_max)
-    #print(y_min)
-
-    print(f"Objektgroße: {round(x_max-x_min, 1)} * {round(y_max-y_min, 2)}")
     ränder_abfahren1=[
-        f"G0 X{x_min} Y{y_min} F5000",
-        f"G0 Y{y_max}",
-        f"G0 X{x_max}",
-        f"G0 Y{y_min}",
-        f"G0 X{x_min} Y{y_min}",
-        f"G4 P4000"# sek warten
+        f"G0 F5000",
+        f"G0 Y{maße[1]}",
+        f"G0 X{maße[0]}",
+        f"G0 Y0",
+        f"G0 X0",
+        f"G4 P{pause*1000}"
     ]
 
-    ränder_abfahren=[]
-    for i in range(runden_abfahren):
+    ränder_abfahren=[f"G91"]
+    for i in range(runden_abfahren_stk):
         for block in ränder_abfahren1:
             ränder_abfahren.append(block)
 

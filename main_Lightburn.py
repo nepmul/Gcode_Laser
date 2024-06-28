@@ -1,14 +1,19 @@
 from tuning_Lightburn import tune, umrandung_abfahren
 
 
-path_original="Lightburn/stammeslogo_minipoeg.nc"
-path_ender="/media/br/AC625/stammeslogo_22mm.gcode"
+path_original="Lightburn/bierathlon24.gc"
+path_ender="/media/br/AC625/bierathlon24.gcode"
 
-umrandung_runden=3
 
 speed_travel=1500
 speed_max=1200
-speed_min=60 #kronkorken:5
+speed_min=40 #kronkorken:5, sonst 60
+
+
+maße=(20, 20, 3)#xmm, ymm, zmm
+umranden=False
+umranden_pause=4 #s
+umrandung_runden=3
 
 
 dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesammter block
@@ -54,18 +59,19 @@ for block in file_original:
         file_ender.append(dic_code[code])
 
 full_file=tune(file_ender, speed_travel, speed_max, speed_min)
+if umranden:
+    umrandung=umrandung_abfahren(maße, umrandung_runden, umranden_pause)
+else:
+    umrandung=[]
 
-final_file=""
+full_file=umrandung+full_file
+
+final_file=f"G1 Z{maße[2]}"
 for block in full_file:
-    print(block)
+    #print(block)
     final_file+=block
     final_file+="\n"
-
-
-#umrandung_abfahren(full_file, umrandung_runden)
-
-
-
+print(final_file)
 
 
 with open(path_ender, "w") as f:

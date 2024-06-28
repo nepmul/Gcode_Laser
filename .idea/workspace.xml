@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="programm um geschwindigkeit für graustufen zu kalibrieren">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_gray-speed_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_gray-speed_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_Lightburn.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_Lightburn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tuning.py" beforeDir="false" afterPath="$PROJECT_DIR$/tuning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tuning_Lightburn.py" beforeDir="false" afterPath="$PROJECT_DIR$/tuning_Lightburn.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

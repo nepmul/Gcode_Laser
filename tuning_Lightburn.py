@@ -32,6 +32,29 @@ def tune(original_gcode, speed_travel, speed_max, speed_min):
     return tuned_gcode
 
 
+
+def umrandung_abfahren(maße, runden_abfahren_stk, pause):
+
+    ränder_abfahren1=[
+        f"G0 F5000",
+        f"G0 Y{maße[1]}",
+        f"G0 X{maße[0]}",
+        f"G0 Y0",
+        f"G0 X0",
+        f"G4 P{pause*1000}"
+    ]
+
+    ränder_abfahren=[f"G91"]
+    for i in range(runden_abfahren_stk):
+        for block in ränder_abfahren1:
+            ränder_abfahren.append(block)
+
+    #print(ränder_abfahren)
+    return ränder_abfahren
+
+
+
+""""
 def umrandung_abfahren(gcode, runden_abfahren):
     x_max=-1000
     x_min=1000
@@ -83,5 +106,4 @@ def umrandung_abfahren(gcode, runden_abfahren):
 
     #print(ränder_abfahren)
     return ränder_abfahren
-
-
+"""
