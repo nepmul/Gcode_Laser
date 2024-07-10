@@ -1,19 +1,21 @@
-from tuning_Lightburn import tune, umrandung_abfahren
+from tuning_Lightburn import tune, umrandung_abfahren, find_bounds
 
 
-path_original="Lightburn/bierathlon24.gc"
-path_ender="/media/br/AC625/bierathlon24.gcode"
+path_original="Lightburn/geb_bente.gc"
+path_ender="/media/br/AC625/geb_bente.gcode"
 
+homing=False
 
 speed_travel=1500
 speed_max=1200
-speed_min=40 #kronkorken:5, sonst 60
+speed_min=200#edding500
 
 
-maße=(20, 20, 3)#xmm, ymm, zmm
-umranden=False
-umranden_pause=4 #s
-umrandung_runden=3
+maße=[0, 0, 0]#x(mm), y(mm), z(mm)
+maße_aus_datei=True
+umranden_pause=5 #s
+umrandung_runden=6
+umranden=True
 
 
 dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesammter block
@@ -34,6 +36,11 @@ with open(path_original, "r") as f:
     file = f.read()
 
 file_original=file.split("\n")
+
+if maße_aus_datei:
+    maße[0], maße[1]=find_bounds(file_original)
+print(f"Ausgelesene Maße:{maße}\n")
+
 
 file_ender=[]
 for block in file_original:
@@ -58,17 +65,21 @@ for block in file_original:
     else:
         file_ender.append(dic_code[code])
 
-full_file=tune(file_ender, speed_travel, speed_max, speed_min)
+
+full_file=[]
+
+if homing:
+    full_file.extend(["G28"])
+
+full_file.extend([f"G1 Z{maße[2]}"])
+
 if umranden:
-    umrandung=umrandung_abfahren(maße, umrandung_runden, umranden_pause)
-else:
-    umrandung=[]
+    full_file.extend(umrandung_abfahren(maße, umrandung_runden, umranden_pause))
 
-full_file=umrandung+full_file
+full_file.extend(tune(file_ender, speed_travel, speed_max, speed_min))
 
-final_file=f"G1 Z{maße[2]}"
+final_file=f""
 for block in full_file:
-    #print(block)
     final_file+=block
     final_file+="\n"
 print(final_file)

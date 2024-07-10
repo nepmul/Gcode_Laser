@@ -33,77 +33,43 @@ def tune(original_gcode, speed_travel, speed_max, speed_min):
 
 
 
-def umrandung_abfahren(maße, runden_abfahren_stk, pause):
+def find_bounds(code):
+    for block in code:
+        if block[:9]=="; Bounds:":
+            maße=block.split(" ")
+            len_x=maße[5][1:]
+            len_y=maße[6][1:]
 
+            return float(len_x), float(len_y)
+
+def umrandung_abfahren(maße, runden_abfahren_stk, pause):
+    print(maße)
     ränder_abfahren1=[
-        f"G0 F5000",
+        f"G0 F500",
         f"G0 Y{maße[1]}",
         f"G0 X{maße[0]}",
         f"G0 Y0",
         f"G0 X0",
-        f"G4 P{pause*1000}"
     ]
 
-    ränder_abfahren=[f"G91"]
+    neu_positionieren1=[
+        f"M18 X Y",
+        f"G4 P{pause*1000}",
+        f"M300 S440 P200",
+        f"G4 P1000",
+        f"M17 X Y"
+    ]
+
+    umranden=[f"G90"]
     for i in range(runden_abfahren_stk):
-        for block in ränder_abfahren1:
-            ränder_abfahren.append(block)
+        umranden.append(f"M117 noch {runden_abfahren_stk-i} runden")
+        umranden.extend(ränder_abfahren1)
+        umranden.extend(neu_positionieren1)
+    umranden.extend([f"M117 Laser anschalten!", f"G4 P3000"])
+
 
     #print(ränder_abfahren)
-    return ränder_abfahren
+    return umranden
 
 
 
-""""
-def umrandung_abfahren(gcode, runden_abfahren):
-    x_max=-1000
-    x_min=1000
-    y_max=-1000
-    y_min=1000
-    for block in gcode:
-        print(block)
-        parts_block=block.split(" ")
-        if parts_block[0] == "G1" and parts_block[1][0]=="X":
-                part=parts_block[1]
-                xy=part[1:].split("Y")
-                print(xy)
-                value=float(xy[0])
-                if value > x_max:
-                    x_max=value
-                if value < x_min:
-                    x_min=value
-
-                try:
-                    value=float(xy[1])
-                    print("------------------------", value)
-
-                    if value > y_max:
-                        y_max=value
-                    if value < y_min:
-                        y_min=value
-                except IndexError:
-                    pass
-
-    print(x_max)
-    print(x_min)
-    print(y_max)
-    print(y_min)
-
-    print(f"Objektgroße: {round(x_max-x_min, 1)} * {round(y_max-y_min, 2)}")
-    ränder_abfahren1=[
-        f"G0 X{x_min} Y{y_min} F5000",
-        f"G0 Y{y_max}",
-        f"G0 X{x_max}",
-        f"G0 Y{y_min}",
-        f"G0 X{x_min} Y{y_min}",
-        f"G4 P4000"# sek warten
-    ]
-
-    ränder_abfahren=[]
-    for i in range(runden_abfahren):
-        for block in ränder_abfahren1:
-            ränder_abfahren.append(block)
-
-    #print(ränder_abfahren)
-    return ränder_abfahren
-"""
