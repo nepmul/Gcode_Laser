@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="neue umrandungsmethode und maße werden aus der datei ausgelesen">
+    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="parameterkonfiguration ausgelagert zu Profile">
+      <change afterPath="$PROJECT_DIR$/Profile/Kohtenplättchen.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Profile/grayscale_plättchen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/create_gray-speed_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_gray-speed_test.py" afterDir="false" />
@@ -194,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720645170618</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="parameterkonfiguration ausgelagert zu Profile">
+      <option name="closed" value="true" />
+      <created>1721243617305</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1721243617305</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -208,6 +217,7 @@
     <MESSAGE value="programm um geschwindigkeit für graustufen zu kalibrieren" />
     <MESSAGE value="umrandung ergänzt, maße müssen manuell eingetragen werden" />
     <MESSAGE value="neue umrandungsmethode und maße werden aus der datei ausgelesen" />
-    <option name="LAST_COMMIT_MESSAGE" value="neue umrandungsmethode und maße werden aus der datei ausgelesen" />
+    <MESSAGE value="parameterkonfiguration ausgelagert zu Profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="parameterkonfiguration ausgelagert zu Profile" />
   </component>
 </project>
