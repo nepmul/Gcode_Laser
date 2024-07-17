@@ -1,12 +1,12 @@
-sections=4#stk
-section_width=5#mm
-height=0.8#mm
+sections=6#stk
+section_width=7#mm
+height=20#mm
 spacing=0.1#mm
 
-min_speed=260
-max_speed=330
+min_speed=200
+max_speed=800
 
-travel_speed=3000
+travel_speed=1500
 
 delay_on=100 #1000=1s
 delay_off=100 #1000=1s
@@ -87,6 +87,6 @@ print(result)
 print(f"{line_counter} lines")
 
 
-with open("/media/br/AC625/feuerzeug_speed.gcode", "w") as f:
+with open("/media/br/AC625/plaettchen_speed.gcode", "w") as f:
     f.write(file)
 

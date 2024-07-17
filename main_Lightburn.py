@@ -1,21 +1,12 @@
+from time import sleep, time
+start=time()
 from tuning_Lightburn import tune, umrandung_abfahren, find_bounds
 
 
-path_original="Lightburn/geb_bente.gc"
-path_ender="/media/br/AC625/geb_bente.gcode"
+from Profile.grayscale_plättchen import *
 
-homing=False
-
-speed_travel=1500
-speed_max=1200
-speed_min=200#edding500
-
-
-maße=[0, 0, 0]#x(mm), y(mm), z(mm)
-maße_aus_datei=True
-umranden_pause=5 #s
-umrandung_runden=6
-umranden=True
+path_original="Lightburn/Dreachenauge.gc"
+path_ender="/media/br/AC625/Drachenauge.gcode"
 
 
 dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesammter block
@@ -41,7 +32,7 @@ if maße_aus_datei:
     maße[0], maße[1]=find_bounds(file_original)
 print(f"Ausgelesene Maße:{maße}\n")
 
-
+start_vorformatieren=time()
 file_ender=[]
 for block in file_original:
 
@@ -65,7 +56,7 @@ for block in file_original:
     else:
         file_ender.append(dic_code[code])
 
-
+print(f"Dauer vorformatieren: {time()-start_vorformatieren}")
 full_file=[]
 
 if homing:
@@ -76,14 +67,25 @@ full_file.extend([f"G1 Z{maße[2]}"])
 if umranden:
     full_file.extend(umrandung_abfahren(maße, umrandung_runden, umranden_pause))
 
-full_file.extend(tune(file_ender, speed_travel, speed_max, speed_min))
+start_tune=time()
+full_file.extend(tune(file_ender, speed_travel, speed_max, speed_min, delay_on, delay_off))
+print(f"Dauer tunign: {time()-start_tune}")
 
-final_file=f""
-for block in full_file:
-    final_file+=block
-    final_file+="\n"
+final_file='\n'.join(full_file)
+#for block in full_file:
+  #  final_file+=block
+   # final_file+="\n"
+
 print(final_file)
 
+print(f"Dauer gesammt:{time()-start}")
 
-with open(path_ender, "w") as f:
-    f.write(final_file)
+while True:
+    try:
+        with open(path_ender, "w") as f:
+            f.write(final_file)
+        print("Done")
+        exit(0)
+    except Exception as e:
+        print("speicherkarte nicht gefunden", e)
+        sleep(4)

@@ -3,7 +3,7 @@ def power2speed(speed0, speed100, power):
     dif = speed100-speed0
     return round(power/255*dif+speed0, 2)
 
-def tune(original_gcode, speed_travel, speed_max, speed_min):
+def tune(original_gcode, speed_travel, speed_max, speed_min, delay_on, delay_off):
     tuned_gcode=[]
     laser_off_flag=True
     for block in original_gcode:
@@ -11,14 +11,14 @@ def tune(original_gcode, speed_travel, speed_max, speed_min):
 
         if block=="M106 S0 ":#Laser aus
             new_blocks.append(block)
-            new_blocks.append("G4 P100")
+            new_blocks.append(f"G4 P{delay_off}")
             new_blocks.append(f"G1 F{speed_travel}")
             laser_off_flag=True
 
         elif block[:4]=="M106":#Laser an
             if laser_off_flag:
                 new_blocks.append("M106 S255")
-                new_blocks.append("G4 P50") #1s = 1000
+                new_blocks.append(f"G4 P{delay_on}") #1s = 1000
                 laser_off_flag=False
 
             speed=power2speed(speed_max, speed_min, float(block[6:]))
@@ -45,7 +45,7 @@ def find_bounds(code):
 def umrandung_abfahren(maße, runden_abfahren_stk, pause):
     print(maße)
     ränder_abfahren1=[
-        f"G0 F500",
+        f"G0 F3000",
         f"G0 Y{maße[1]}",
         f"G0 X{maße[0]}",
         f"G0 Y0",
@@ -73,3 +73,5 @@ def umrandung_abfahren(maße, runden_abfahren_stk, pause):
 
 
 
+if __name__=="__main__":
+    print("\nFalsches Programm du Idiot\n")
