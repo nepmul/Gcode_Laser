@@ -3,14 +3,18 @@ def power2speed(speed0, speed100, power):
     dif = speed100-speed0
     return round(power/255*dif+speed0, 2)
 
-def tune(original_gcode, speed_travel, speed_max, speed_min, delay_on, delay_off):
+def tune(original_gcode, speed_travel, speed_max, speed_min, delay_on, delay_off, turn_laser_off):
     tuned_gcode=[]
     laser_off_flag=True
     for block in original_gcode:
         new_blocks=[]
 
         if block=="M106 S0 ":#Laser aus
-            new_blocks.append(block)
+            if turn_laser_off:
+                new_blocks.append(block)
+            else:
+                pass
+
             new_blocks.append(f"G4 P{delay_off}")
             new_blocks.append(f"G1 F{speed_travel}")
             laser_off_flag=True

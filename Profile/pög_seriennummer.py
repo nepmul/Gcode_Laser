@@ -12,3 +12,5 @@ umranden=False
 
 delay_on=100#1s = 1000
 delay_off=100
+
+turn_laser_off=True
