@@ -3,10 +3,10 @@ start=time()
 from tuning import tune, umrandung_abfahren, find_bounds
 
 
-from Profile.pög_seriennummer import *
+from Profile.pög_grayscale import *
 
-path_original="/home/br/Desktop/Pögs_Seriennummern/lightburn/seriennummer.gcode"
-path_ender="/media/br/AC625/seriennummer.gcode"
+path_original="/home/br/Desktop/Gcode_Laser/Lightburn/Leo-Pög/Leo_Poeg.gcode"
+path_ender="/media/br/AC625/Leo_Poeg.gcode"
 
 
 dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesammter block
