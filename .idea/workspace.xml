@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="pög seriennummer profil hinzugefügt">
+    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="turn_laser_off=True/False zu profilen hinzugefügt. verhindert, das der laser ausgeschaltet wird, sondern angeschltet mit speed_travel fährt">
+      <change afterPath="$PROJECT_DIR$/Profile/default.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Profile/pög_grayscale.py" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/pög_grayscale.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tuning.py" beforeDir="false" afterPath="$PROJECT_DIR$/tuning.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724333249855</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="turn_laser_off=True/False zu profilen hinzugefügt. verhindert, das der laser ausgeschaltet wird, sondern angeschltet mit speed_travel fährt">
+      <option name="closed" value="true" />
+      <created>1724335968068</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1724335968068</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -254,6 +264,7 @@
     <MESSAGE value="parameterkonfiguration ausgelagert zu Profile" />
     <MESSAGE value="alten code raus geschmissen" />
     <MESSAGE value="pög seriennummer profil hinzugefügt" />
-    <option name="LAST_COMMIT_MESSAGE" value="pög seriennummer profil hinzugefügt" />
+    <MESSAGE value="turn_laser_off=True/False zu profilen hinzugefügt. verhindert, das der laser ausgeschaltet wird, sondern angeschltet mit speed_travel fährt" />
+    <option name="LAST_COMMIT_MESSAGE" value="turn_laser_off=True/False zu profilen hinzugefügt. verhindert, das der laser ausgeschaltet wird, sondern angeschltet mit speed_travel fährt" />
   </component>
 </project>

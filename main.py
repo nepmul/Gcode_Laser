@@ -1,12 +1,23 @@
 from time import sleep, time
 start=time()
 from tuning import tune, umrandung_abfahren, find_bounds
+from Profile.default import *
+
 
 
 from Profile.pög_grayscale import *
 
 path_original="/home/br/Desktop/Gcode_Laser/Lightburn/Leo-Pög/Leo_Poeg.gcode"
 path_ender="/media/br/AC625/Leomuster_Poeg.gcode"
+
+
+
+
+
+
+
+
+
 
 
 dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesammter block
@@ -68,7 +79,7 @@ if umranden:
     full_file.extend(umrandung_abfahren(maße, umrandung_runden, umranden_pause))
 
 start_tune=time()
-full_file.extend(tune(file_ender, speed_travel, speed_max, speed_min, delay_on, delay_off, turn_laser_off))
+full_file.extend(tune(file_ender, speed_travel, speed_max, speed_min, delay_on, delay_off, turn_laser_off, wt))
 print(f"Dauer tunign: {time()-start_tune}")
 
 final_file='\n'.join(full_file)
