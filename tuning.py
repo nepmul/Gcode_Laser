@@ -1,68 +1,77 @@
 
+def power2speed(speed0, speed100, power):
+    dif = speed100-speed0
+    return round(power/255*dif+speed0, 2)
 
-def tune(original_gcode, laser_height, z_hoop, laser_speed, travel_speed):
+def tune(original_gcode, speed_travel, speed_max, speed_min, delay_on, delay_off):
     tuned_gcode=[]
+    laser_off_flag=True
     for block in original_gcode:
-        new_blocks=[block]
+        new_blocks=[]
 
-        if block=="M106":#Laser an
-            new_blocks.insert(0, f"G0 Z{laser_height}")
-            new_blocks.insert(1, f"G1 F{laser_speed}")
-            new_blocks.append("G4 P120") #1s = 1000
+        if block=="M106 S0 ":#Laser aus
+            new_blocks.append(block)
+            new_blocks.append(f"G4 P{delay_off}")
+            new_blocks.append(f"G1 F{speed_travel}")
+            laser_off_flag=True
 
-        elif block=="M107":#Laser aus
-            new_blocks.append(f"G1 F{travel_speed}")
-            new_blocks.append(f"G0 Z{laser_height+z_hoop}")
-            new_blocks.append("G4 P200")
+        elif block[:4]=="M106":#Laser an
+            if laser_off_flag:
+                new_blocks.append("M106 S255")
+                new_blocks.append(f"G4 P{delay_on}") #1s = 1000
+                laser_off_flag=False
 
-        #elif block.split(" ")[0] == "G0":
-         #   new_blocks.insert(0, f"G0 {travel_speed}")
-          #  new_blocks.append(f"G1 {laser_speed}")
+            speed=power2speed(speed_max, speed_min, float(block[6:]))
+            new_blocks.append(f"G1 F{speed}")
+
+        else:
+            new_blocks.append(block)
 
         for block in new_blocks:
             tuned_gcode.append(block)
-
     return tuned_gcode
 
 
-def umrandung_abfahren(maße, runden_abfahren_stk, pause):
 
+def find_bounds(code):
+    for block in code:
+        if block[:9]=="; Bounds:":
+            maße=block.split(" ")
+            len_x=maße[5][1:]
+            len_y=maße[6][1:]
+
+            return float(len_x), float(len_y)
+
+def umrandung_abfahren(maße, runden_abfahren_stk, pause):
+    print(maße)
     ränder_abfahren1=[
-        f"G0 F5000",
+        f"G0 F3000",
         f"G0 Y{maße[1]}",
         f"G0 X{maße[0]}",
         f"G0 Y0",
         f"G0 X0",
-        f"G4 P{pause*1000}"
     ]
 
-    ränder_abfahren=[f"G91"]
+    neu_positionieren1=[
+        f"M18 X Y",
+        f"G4 P{pause*1000}",
+        f"M300 S440 P200",
+        f"G4 P1000",
+        f"M17 X Y"
+    ]
+
+    umranden=[f"G90"]
     for i in range(runden_abfahren_stk):
-        for block in ränder_abfahren1:
-            ränder_abfahren.append(block)
+        umranden.append(f"M117 noch {runden_abfahren_stk-i} runden")
+        umranden.extend(ränder_abfahren1)
+        umranden.extend(neu_positionieren1)
+    umranden.extend([f"M117 Laser anschalten!", f"G4 P3000"])
+
 
     #print(ränder_abfahren)
-    return ränder_abfahren
+    return umranden
 
 
-def offset(gcode, offset_x, offset_y):
-    new_gcode=[]
-    for block in gcode:
-        print(block)
-        args=block.split(" ")
-        if not args == [""]:
 
-
-            for arg in args:
-                if arg[0] == "X":
-                    new_arg = "X"+str(round(float(arg[1:]) + offset_x, 2))#offset wird auf gegebenen wert drauf gerechnet
-                    block=block.replace(arg, new_arg)
-                elif arg[0] == "Y":
-                    new_arg = "Y"+str(round(float(arg[1:]) + offset_y, 2))
-                    block=block.replace(arg, new_arg)
-
-
-        print(block)
-        new_gcode.append(block)
-
-    return new_gcode
+if __name__=="__main__":
+    print("\nFalsches Programm du Idiot\n")
