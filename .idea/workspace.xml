@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="turn_laser_off=True/False zu profilen hinzugefügt. verhindert, das der laser ausgeschaltet wird, sondern angeschltet mit speed_travel fährt">
-      <change afterPath="$PROJECT_DIR$/Profile/default.py" afterDir="false" />
+    <list default="true" id="869a929d-fa0d-4c55-8173-9bd9de6f4f51" name="Changes" comment="added profile 'default'. is always imported, so unused parameters don't need to be mentioned in every profile">
+      <change afterPath="$PROJECT_DIR$/Profile/leder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Profile/ticket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile/default.py" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/default.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Profile/pög_grayscale.py" beforeDir="false" afterPath="$PROJECT_DIR$/Profile/pög_grayscale.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tuning.py" beforeDir="false" afterPath="$PROJECT_DIR$/tuning.py" afterDir="false" />
@@ -247,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724335968068</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="added profile 'default'. is always imported, so unused parameters don't need to be mentioned in every profile">
+      <option name="closed" value="true" />
+      <created>1724348591501</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1724348591501</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -265,6 +275,7 @@
     <MESSAGE value="alten code raus geschmissen" />
     <MESSAGE value="pög seriennummer profil hinzugefügt" />
     <MESSAGE value="turn_laser_off=True/False zu profilen hinzugefügt. verhindert, das der laser ausgeschaltet wird, sondern angeschltet mit speed_travel fährt" />
-    <option name="LAST_COMMIT_MESSAGE" value="turn_laser_off=True/False zu profilen hinzugefügt. verhindert, das der laser ausgeschaltet wird, sondern angeschltet mit speed_travel fährt" />
+    <MESSAGE value="added profile 'default'. is always imported, so unused parameters don't need to be mentioned in every profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="added profile 'default'. is always imported, so unused parameters don't need to be mentioned in every profile" />
   </component>
 </project>

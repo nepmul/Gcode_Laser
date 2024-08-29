@@ -4,23 +4,12 @@ from tuning import tune, umrandung_abfahren, find_bounds
 from Profile.default import *
 
 
-
 from Profile.pög_grayscale import *
 
-path_original="/home/br/Desktop/Gcode_Laser/Lightburn/Leo-Pög/Leo_Poeg.gcode"
-path_ender="/media/br/AC625/Leomuster_Poeg.gcode"
+path_original="/home/br/Desktop/18.er/ticket.gc"
+path_ender="/media/br/AC625/Ticket.gcode"
 
-
-
-
-
-
-
-
-
-
-
-dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesammter block
+dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesamter block
     "G28": None,
     "G1": None,
     "G0": None,
@@ -47,7 +36,7 @@ start_vorformatieren=time()
 file_ender=[]
 for block in file_original:
 
-    if "F" in block: #alle geschwindigkeiten von Ligtburn raus filtern
+    if "F" in block: #alle geschwindigkeiten von Ligtburn herausfiltern
         block=block.split("F")[0]
 
     code = block.split(" ")[0]
@@ -79,17 +68,15 @@ if umranden:
     full_file.extend(umrandung_abfahren(maße, umrandung_runden, umranden_pause))
 
 start_tune=time()
-full_file.extend(tune(file_ender, speed_travel, speed_max, speed_min, delay_on, delay_off, turn_laser_off, wt))
-print(f"Dauer tunign: {time()-start_tune}")
+full_file.extend(tune(file_ender, speed_travel, speed_max, speed_min, delay_on, delay_off, turn_laser_off, on_power_threshold))
+print(f"Dauer tuning: {time()-start_tune}")
 
 final_file='\n'.join(full_file)
-#for block in full_file:
-  #  final_file+=block
-   # final_file+="\n"
+
 
 print(final_file)
 
-print(f"Dauer gesammt:{time()-start}")
+print(f"Dauer gesamt:{time()-start}")
 
 while True:
     try:

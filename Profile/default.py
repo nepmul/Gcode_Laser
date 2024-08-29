@@ -13,7 +13,6 @@ umranden=False
 delay_on=80#1s = 1000
 delay_off=100
 
-#only for grayscale
 turn_laser_off=True
 
-wt=0 #0-255
+on_power_threshold=0 #0-255 everything below this value is driven with travel_speed

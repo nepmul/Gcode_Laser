@@ -1,11 +1,10 @@
-
-def power2speed(speed0, speed100, wt, speed_travel, power):
-    if power <= wt:
-        return speed_travel
+def power2speed(speed0, speed100, on_power_threshold, speed_travel, power):
+    if power <= on_power_threshold:
+        return str(speed_travel)+""
     dif = speed100-speed0
     return round(power/255*dif+speed0, 2)
 
-def tune(original_gcode, speed_travel, speed_max, speed_min, delay_on, delay_off, turn_laser_off, wt):
+def tune(original_gcode, speed_travel, speed_max, speed_min, delay_on, delay_off, turn_laser_off, on_power_threshold):
     tuned_gcode=[]
     laser_off_flag=True
     for block in original_gcode:
@@ -16,18 +15,19 @@ def tune(original_gcode, speed_travel, speed_max, speed_min, delay_on, delay_off
                 new_blocks.append(block)
             else:
                 pass
-
-            new_blocks.append(f"G4 P{delay_off}")
+            if delay_off != 0:
+                new_blocks.append(f"G4 P{delay_off}")
             new_blocks.append(f"G1 F{speed_travel}")
             laser_off_flag=True
 
         elif block[:4]=="M106":#Laser an
             if laser_off_flag:
                 new_blocks.append("M106 S255")
-                new_blocks.append(f"G4 P{delay_on}") #1s = 1000
+                if delay_on != 0:
+                    new_blocks.append(f"G4 P{delay_on}") #1s = 1000
                 laser_off_flag=False
 
-            speed=power2speed(speed_max, speed_min, wt, speed_travel, (block[6:]))
+            speed=power2speed(speed_max, speed_min, on_power_threshold, speed_travel, float(block[6:]))
             new_blocks.append(f"G1 F{speed}")
 
         else:
@@ -67,11 +67,12 @@ def umrandung_abfahren(maße, runden_abfahren_stk, pause):
     ]
 
     umranden=[f"G90"]
+    umranden.extend(neu_positionieren1)
     for i in range(runden_abfahren_stk):
         umranden.append(f"M117 noch {runden_abfahren_stk-i} runden")
         umranden.extend(ränder_abfahren1)
         umranden.extend(neu_positionieren1)
-    umranden.extend([f"M117 Laser anschalten!", f"G4 P3000"])
+    umranden.extend([f"M117 Laser anschalten!", "M300 S440 P200" , f"G4 P3000"])
 
 
     #print(ränder_abfahren)
