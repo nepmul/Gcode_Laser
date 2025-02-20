@@ -3,21 +3,19 @@ start=time()
 from tuning import tune, umrandung_abfahren, find_bounds
 from Profile.default import *
 
-
-from Profile.pög_grayscale import *
-
-path_original="/home/br/Desktop/18.er/ticket.gc"
-path_ender="/media/br/AC625/Ticket.gcode"
+from Profile.mini_leo_pög import *
 
 dic_code={ #None=pass, %=nur code ersetzten, ansonsten gesamter block
     "G28": None,
     "G1": None,
+    "G0": None,
     "G0": None,
     "G21": "",
     "G90": None,
     "G91": None,
     "G4": None,
     "M106": None,
+    "M107": None,
     "M8": "",
     "M9": ""
 }
@@ -67,9 +65,13 @@ full_file.extend([f"G1 Z{maße[2]}"])
 if umranden:
     full_file.extend(umrandung_abfahren(maße, umrandung_runden, umranden_pause))
 
+full_file.extend(pre_code)
+
 start_tune=time()
-full_file.extend(tune(file_ender, speed_travel, speed_max, speed_min, delay_on, delay_off, turn_laser_off, on_power_threshold))
+full_file.extend(tune(file_ender, speed_travel, speed_max, speed_min, delay_on, delay_off, turn_laser_off, on_power_threshold, power_steps))
 print(f"Dauer tuning: {time()-start_tune}")
+
+full_file.extend(["M106 S0", "M300 S440 P200"])
 
 final_file='\n'.join(full_file)
 
@@ -77,6 +79,9 @@ final_file='\n'.join(full_file)
 print(final_file)
 
 print(f"Dauer gesamt:{time()-start}")
+
+print(f"Ausgelesene Maße:{maße}\n")
+
 
 while True:
     try:
@@ -86,4 +91,4 @@ while True:
         exit(0)
     except Exception as e:
         print("speicherkarte nicht gefunden", e)
-        sleep(4)
+        sleep(2)

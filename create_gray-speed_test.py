@@ -1,12 +1,14 @@
-sections=6#stk
-section_width=7#mm
-height=20#mm
+sections=7#stk
+section_width=4#mm
+height=10#mm
 spacing=0.1#mm
 
-min_speed=200
-max_speed=800
+object_height=20.5#mm
 
-travel_speed=1500
+min_speed=200
+max_speed=350
+
+travel_speed=3000
 
 delay_on=100 #1000=1s
 delay_off=100 #1000=1s
@@ -15,7 +17,16 @@ overdrawing=10#mm
 laser_on=["M106 S255", f"G4 P{delay_on}"]
 laser_off=["M106 S0"]#, f"G4 P{delay_off}"]
 
-startcode=[f"G91", f"M117 {min_speed} - {max_speed}; {sections} * {section_width}mm"]
+startcode=[f"G91",
+            f"M117 {min_speed} - {max_speed}; {sections} * {section_width}mm",
+            f"G28",
+            f"G1 Z{object_height} F{travel_speed}",
+            f"M18 X Y",
+            f"G4 P5000",
+            f"M300 S440 P200",
+            f"G4 P1000",
+            f"M17 X Y"
+            ]
 
 full_widt=section_width*sections#mm
 speed_dif=max_speed-min_speed
@@ -28,7 +39,7 @@ line=[] #markierungen für abschnitte
 section_marker=[]
 section_marker.append(f"G1 X{section_width}")
 section_marker.extend(laser_on)
-section_marker.append(f"G4 P300")
+section_marker.append(f"G4 P200")
 section_marker.extend(laser_off)
 for i in range(sections):
     line.extend(section_marker)
@@ -37,7 +48,7 @@ for i in range(4):
     startcode.extend(line)
     laser_height+=spacing
 
-
+"""
 line=[]#linie unter teststrecke
 line.extend(laser_on)
 line.append(f"G1 X{full_widt} F{min_speed}")
@@ -46,7 +57,7 @@ line.append(f"G1 X-{full_widt} Y{spacing} F{travel_speed}")
 for i in range(3):
     laser_height+=spacing
     startcode.extend(line)
-
+"""
 
 line=laser_on#eigentliche teststrecke
 for i in range(sections):
@@ -87,6 +98,6 @@ print(result)
 print(f"{line_counter} lines")
 
 
-with open("/media/br/AC625/plaettchen_speed.gcode", "w") as f:
+with open("/media/br/AC625/minnipoeg_speed_test.gcode", "w") as f:
     f.write(file)
 
